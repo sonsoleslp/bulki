@@ -1,0 +1,97 @@
+@import '~@angular/material/core/theming/all-theme';
+
+// NOTE: Theming is currently experimental and not yet publically released!
+
+@include md-core();
+
+$primary: md-palette($md-deep-purple);
+$accent:  md-palette($md-amber, A200, A100, A400);
+
+$theme: md-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+.m2app-dark {
+  $dark-primary: md-palette($md-pink, 700, 500, 900);
+  $dark-accent:  md-palette($md-blue-grey, A200, A100, A400);
+  $dark-warn:    md-palette($md-deep-orange);
+
+  $dark-theme: md-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
+.nobutton{
+	border:0;
+	background-color: transparent;
+	box-shadow: none;
+	outline:0;
+	color: white;
+}
+
+.flex {
+      -webkit-flex: 1 1 0%;
+          -ms-flex: 1 1 0%;
+              flex: 1 1 0%;
+      box-sizing: border-box;
+    }
+    .flex-20 {
+      -webkit-flex: 1 1 20%;
+          -ms-flex: 1 1 20%;
+              flex: 1 1 20%;
+      max-width: 20%;
+      max-height: 100%;
+      box-sizing: border-box;
+    }
+
+    .layout-row .flex-30 {
+      -webkit-flex: 1 1 30%;
+          -ms-flex: 1 1 30%;;
+              flex: 1 1 30%;;
+      box-sizing: border-box;
+    }
+
+    .layout-row  .flex-40 {
+      -webkit-flex: 1 1 40%;
+          -ms-flex: 1 1 40%;
+              flex: 1 1 40%;
+      box-sizing: border-box;
+    }
+    .layout-row  .flex-20 {
+      -webkit-flex: 1 1 10%;
+          -ms-flex: 1 1 20%;
+              flex: 1 1 20%;
+      box-sizing: border-box;
+    }
+
+
+
+    .layout-row .flex-30 {
+      max-width: 30%;
+      max-height: 100%;
+    }
+
+    .layout-row  .flex-40 {
+      max-width: 40%;
+      max-height: 100%;
+    }
+
+    .layout-row  .flex-20 {
+      max-width: 20%;
+      max-height: 100%;
+    }
+
+    .layout-column .flex-30 {
+      max-width: 100%;
+      max-height:30%;
+    }
+
+    .layout-column  .flex-40 {
+      max-width: 100%;
+      max-height:40%;
+    }
+
+    .layout-column  .flex-20 {
+      max-width: 100%;
+      max-height:40%;
+    }
