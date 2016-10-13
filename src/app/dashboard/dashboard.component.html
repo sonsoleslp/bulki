@@ -1,0 +1,28 @@
+
+
+<div class="container-fluid" style="height:100%;">
+  <div class="row" style="height:100%;">
+    <div class="col-xs-{{openLeft}} totalheight colLeft">
+      <app-list></app-list>
+      <div class="bottomButtons">
+        <button md-icon-button><md-icon>add</md-icon></button>
+        <button md-icon-button (click)="toggleLeft()"><md-icon>{{openLeft > 11 ? "keyboard_arrow_left":"keyboard_arrow_right"}}</md-icon></button>
+      </div>
+     </div>
+    <div class="col-xs-{{100-openLeft-openRight}} totalheight colCenter">
+      <div class="row rowTop" [ngStyle]="styleTop">
+        <app-canvas></app-canvas>
+          
+      </div>         
+      <div class="row rowBottom" [ngStyle]="styleBottom" mwlResizable  [resizeEdges]="{ top: true }"  [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)" > 
+        <app-bulkitable></app-bulkitable>
+      </div>    
+    </div>
+    <div class="col-xs-{{openRight}} totalheight colRight">
+      <app-config></app-config>
+      <div class="bottomButtons" style="text-align:right;">
+        <button md-icon-button (click)="toggleRight()"><md-icon>{{openRight > 11 ? "keyboard_arrow_right":"keyboard_arrow_left"}}</md-icon></button>
+      </div>
+    </div>
+  </div>
+</div>

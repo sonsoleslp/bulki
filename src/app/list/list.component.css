@@ -1,0 +1,15 @@
+.filelist {
+	color:white;	
+	padding:5px; 
+	margin-top: 2px;
+}
+.filelist > li {
+	list-style: none;
+ 	vertical-align: text-bottom;
+ 	line-height: 24px;
+}
+
+a {
+	text-decoration: none;
+	color:white;
+}

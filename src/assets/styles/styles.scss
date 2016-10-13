@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'variables';
+
+
+html{
+	height: calc(100% - 50px);
+}
+body {
+	margin:0;
+	font-family: 'Roboto', sans-serif;
+	height: 100%;
+}
+
+.colLeft {
+	background-color: $green;
+	color:white;
+}
+.colCenter {
+	/*background-color: $light;*/
+	padding:0;
+}
+
+.colRight {
+	background-color: $bluegrey;
+		color:white;
+
+}
+
+.rowTop{
+	background-color: white;
+	height:50%;
+	margin:0;
+	padding:5px;
+}
+
+.rowBottom {
+	background-color: $light;
+	padding:5px;
+	height:50%;
+	margin:0;
+	border-top: 3px solid $purple;
+
+}
+.totalheight {
+	/*position: absolute;*/
+	overflow-x:hidden;
+	/*background-color: $purple;*/
+	/*border: 2px solid white;*/
+	padding: 0;
+	height: 100%;
+	transition: all 0.5s ease-in;
+}
+
+.navbar{
+	background-color: $purple;
+	color: white;
+	font-size: 1.3em;
+	padding: 5px 10px;
+}
+
+
+.menutop{
+	margin:0;
+	padding:4px;
+	color: white;
+	background-color: rgba(255,255,255,0.3);
+	font-weight: 300;
+	line-height: 35px;
+}
+
+.material-icons{
+	    line-height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bottomButtons {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}

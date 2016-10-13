@@ -1,0 +1,10 @@
+.canvascontainer {
+	width: 100%;
+	height: 100%;
+	border: 6px solid transparent;
+}
+.centereddiv{
+	text-align: center;
+	display:inline-block;
+	margin:auto;
+}
