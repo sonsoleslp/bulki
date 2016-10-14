@@ -7,9 +7,28 @@
 	list-style: none;
  	vertical-align: text-bottom;
  	line-height: 24px;
+ 	overflow-x:hidden;
+	text-overflow: ellipsis;
+ 	word-wrap:none;
+ 	width: 100%;
 }
 
 a {
 	text-decoration: none;
 	color:white;
+ 	overflow-x:hidden;
+	text-overflow: ellipsis;
+	display:inline-block;
+	width: 100%;
+	 
+ 	word-wrap: none;
+}
+
+.listText {
+	vertical-align: text-bottom;
+	line-height: 24px;
+	width: calc(100% - 30px);
+	 overflow-x:hidden;
+	text-overflow: ellipsis;
+	display:inline-block;
 }

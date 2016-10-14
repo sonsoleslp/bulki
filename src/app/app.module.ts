@@ -17,6 +17,7 @@ import { BulkitableComponent } from './bulkitable/bulkitable.component';
 import { ListComponent } from './list/list.component';
 import { ConfigComponent } from './config/config.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DataTableModule } from "angular2-datatable";
  
 
 
@@ -28,8 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BulkitableComponent,
     ListComponent,
     ConfigComponent,
-    DashboardComponent,
-     
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +38,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 100 }),
     MaterialModule.forRoot(),
     ResizableModule,
+    DataTableModule,
     RouterModule.forRoot(appRouterProviders)
   ],
   providers: [DatafilesService],

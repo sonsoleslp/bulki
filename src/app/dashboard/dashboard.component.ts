@@ -14,8 +14,8 @@ export class DashboardComponent implements OnInit {
   	openLeft;
   	openRight;
   	bottomHeight;
- 	styleBottom; 
-	styleTop;
+   	styleBottom; 
+  	styleTop;
   constructor(ngZone:NgZone) {
   	 this.width = window.innerWidth;
      this.height = window.innerHeight;
