@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Datafile } from './../datafile';
@@ -10,12 +10,12 @@ import { DatafilesService } from './../datafiles.service';
   styleUrls: ['./config.component.css'],
   providers: [DatafilesService]
 })
-export class ConfigComponent implements OnInit {
+export class ConfigComponent implements OnInit, OnChanges {
 
-
+  @Input('data') public data: any;
   file: Datafile;
   sub: any;
-
+  cols;
   constructor(
     private dfs: DatafilesService,
     private route: ActivatedRoute) {
@@ -26,10 +26,31 @@ export class ConfigComponent implements OnInit {
       let id = +params['id'];
       this.dfs.getFile(id)
         .then(file => this.file = file);
-        console.log(this.file)
-    });
+     });
+    if (this.data){
+      console.log('got data')
+      
+    }
   }
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    console.log('oooo',changes)
+    for (let propName in changes) {
+      let changedProp = changes[propName];
 
+      if (propName == 'data' ) {
+        this.data = changedProp.currentValue;
+        console.log("thisdata", this.data)
+        if (this.data) {
+           
+            if (this.data.columns) {
+              this.cols = this.data.columns;
+              console.log(this.cols) 
+            }
+          
+        }
+      }
+     }
+   }
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

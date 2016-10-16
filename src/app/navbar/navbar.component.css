@@ -1,8 +1,9 @@
-.navbar{
+.navigbar{
 	height:50px;
 }
-.nav-title{
+.navigtitle{
 	font-family: "Pacifico";
+	font-size: 24px;
 }
 
 #logotop{

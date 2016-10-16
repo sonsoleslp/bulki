@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy,  ElementRef, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnDestroy,  ElementRef, Input, OnChanges, SimpleChange  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Datafile } from './../datafile';
@@ -12,12 +12,12 @@ var d3 = require('d3')
   styleUrls: ['./canvas.component.css'],
   providers: [DatafilesService]
 })
-export class CanvasComponent implements OnInit {
+export class CanvasComponent implements OnInit,OnChanges {
 
-
+  elementRef;
   file: Datafile;
   sub: any;
-  data;
+  @Input("data") public data: any;
   options;
   private divs: any;
   host;
@@ -25,30 +25,67 @@ export class CanvasComponent implements OnInit {
   constructor( private dfs: DatafilesService, private route: ActivatedRoute, elementRef: ElementRef) {
      // let el: any    = elementRef.nativeElement;  // reference to <bar-graph> element from the main template
      // this.host = d3.select('#thechart');
+     this.elementRef = elementRef;
     
   }
-
+  type(d) {
+      d.value = +d.value; // coerce to number
+      return d;
+  }
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      let id = +params['id'];
-      this.dfs.getFile(id)
-        .then(file => this.file = file);
-        console.log(this.file)
-        console.log(d3)
-        this.svg = d3.select('#thechart').append('svg');
-        this.svg.attr('width',600).attr('height',300);
-        var y = d3.scaleLinear().domain([15,90]).range([250,0]);
-        var x = d3.scaleLog().domain([250,100000]).range([0,600]);
-        var r = d3.scaleSqrt().domain([52070,1380000000]).range([10,40]);
-        this.svg.append('circle').attr('r', r(1380000000)).attr('fill','red').attr('cx', x(13330)).attr('cy', y(77))
+    
+    this.draw();
 
-      
-    });
+     
   }
- 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    console.log(changes)
+    for (let propName in changes) {
+      let changedProp = changes[propName];
+      if (propName == 'data') {
+        this.data = changedProp.currentValue;
+        this.draw();
+      }
+     }
+   }
+
+  draw(){
+    var chart = d3.select('#thechart').html("");
+    var svg = d3.select('#thechart').append('svg');
+    var w = document.getElementById('canvasWrapper').offsetWidth - 32;
+    var h = 500 // document.getElementById('canvasWrapper').offsetHeight;
+    console.log(w)
+    svg.attr('width', w).attr('height', h);
+
+    var  barHeight = 30;
+    var x = d3.scaleLinear().range([0, w]);
+
+    if(this.data){       
+      x.domain([0, d3.max(this.data, function(d) { return d.value; })]);
+
+      svg.attr("height", barHeight * this.data.length);
+
+      var bar = svg.selectAll("g")
+          .data(this.data)
+          .enter().append("g")
+          .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+
+      bar.append("rect")
+          .attr("width", function(d) { return x(d.value); })
+          .attr("height", barHeight - 4);
+
+      bar.append("text")
+          .attr("x", function(d) { return x(d.value) - 3; })
+          .attr("y", barHeight / 2)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.value; });
+     }
   }
+  drawScale(){
+
+  }
+  ngOnDestroy() {}
 
   
 }

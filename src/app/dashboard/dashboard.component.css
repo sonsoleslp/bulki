@@ -1,0 +1,19 @@
+.rowTop, .rowBottom {
+	overflow-y: auto; 
+	overflow-x: hidden; 
+}
+
+.tablecontainer {
+	width: 100%;
+	height: 100%;
+	border: 6px solid transparent;
+	color:$purple;
+}
+
+td , th {
+	text-align: center;
+	background-color: rgba(255,255,255,0.3);
+}
+table {
+	width: 100%;
+}

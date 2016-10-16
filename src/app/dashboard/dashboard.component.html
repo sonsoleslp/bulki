@@ -10,16 +10,39 @@
       </div>
      </div>
     <div class="col-xs-{{100-openLeft-openRight}} totalheight colCenter">
-      <div class="row rowTop" [ngStyle]="styleTop">
-        <app-canvas></app-canvas>
+      <div class="row rowTop" [ngStyle]="styleTop" id="canvasWrapper">
+        <app-canvas [data]="data"></app-canvas>
           
       </div>         
       <div class="row rowBottom" [ngStyle]="styleBottom" mwlResizable  [resizeEdges]="{ top: true }"  [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)" > 
-        <app-bulkitable></app-bulkitable>
+        <div class="tablecontainer" *ngIf="file">
+          <table *ngIf="data" class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="3">
+              <thead>
+                <tr>
+                  <th *ngFor="let col of data.columns">
+                    <mfDefaultSorter by="col">{{col}}</mfDefaultSorter>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of mf.data">
+                  <td *ngFor="let i of data.columns">{{item[i]}}</td> 
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                  </td>
+              </tr>
+              </tfoot>
+          </table>
+        </div>
+
       </div>    
     </div>
     <div class="col-xs-{{openRight}} totalheight colRight">
-      <app-config></app-config>
+      <app-config [data]="data" ></app-config>
       <div class="bottomButtons" style="text-align:right;">
         <button md-icon-button (click)="toggleRight()"><md-icon>{{openRight > 11 ? "keyboard_arrow_right":"keyboard_arrow_left"}}</md-icon></button>
       </div>

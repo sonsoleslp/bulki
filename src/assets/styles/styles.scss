@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'variables';
+@import 'charts';
 
 
 html{
@@ -8,7 +9,7 @@ html{
 }
 body {
 	margin:0;
-	font-family: 'Roboto', sans-serif;
+	// font-family: 'Roboto', sans-serif;
 	height: 100%;
 }
 
@@ -52,7 +53,7 @@ body {
 	transition: all 0.5s ease-in;
 }
 
-.navbar{
+.navigbar{
 	background-color: $purple;
 	color: white;
 	font-size: 1.3em;

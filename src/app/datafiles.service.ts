@@ -22,7 +22,13 @@ export class DatafilesService {
 	             .then(files => files.find(file => file.id === id));
 	}
 
- 
+ 	getActualFile(route: string ){
+ 		console.log(route)
+ 		return this.http.get('/assets/files/file1.tsv')
+ 		           .toPromise()
+ 		           .then(response => response.json().data as any)
+ 		           .catch(this.handleError);
+ 	}
 
 	private handleError(error: any) {
 	  console.error('An error occurred', error);
