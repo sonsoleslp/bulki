@@ -1,9 +1,16 @@
 #thechart rect {
-  fill: $bluegrey;
+	fill: $purple;
+  	/*fill: $bluegrey;*/
 }
 
 #thechart text {
-  fill: white;
+  fill: black;
   font: 10px sans-serif;
-  text-anchor: end;
+  font-family: "Lato";
+  /*text-anchor: end;*/
+}
+
+.tag text {
+	fill: red !important;
+	font: 10px sans-serif;
 }

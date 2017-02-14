@@ -1,9 +1,62 @@
-<h3 class="menutop"><md-icon>settings</md-icon>Settings</h3>
- 
-<div class="containercentered" *ngIf="!file">Empty<div>
-<div class="containercentered" >
-	<ul>
-		<li *ngFor="let col of cols">{{col}}</li>
-	</ul>
 <div>
+	
+	<h3 class="menutop"> <md-icon>settings</md-icon> Settings </h3>
+	 
+	<!-- <div id="emptyfileconfig" class="containercentered" *ngIf="file == undefined"> Choose a file... <div> -->
+		 
+	<div id="nonemptyfileconfig"  *ngIf="file && file.name" class="containercentered" >
+		 
+		<h4 id="filename_config">{{file.name}}</h4>
+		<form class="negativemarginbottom">
+			<h5 class="semititle">Histogram</h5>
+			<md-radio-group  name="hist"  value="0">
+			  <md-radio-button class="radiobuttonform" (click)="setHistVar(col);" *ngFor="let col of cols"value="value_radio1">
+			    {{col}}
+			  </md-radio-button>
+			  <br/>
+			</md-radio-group>
+			<div style="text-align:center;" class="buttonholder">
+				<button style="bottom:0; right:0;" md-button (click)="drawHist();">Draw</button>
+			</div>
+		</form>
+		<ul class="summaryofvar">
+			<li class="summarystats">Max:  {{max.toFixed(2)}}</li>
+			<li class="summarystats">Min:  {{min.toFixed(2)}}</li>
+			<li class="summarystats">Mean:  {{mean.toFixed(2)}}</li>
+			<li class="summarystats">Median:  {{median.toFixed(2)}}</li>
+		</ul>
+	 	<form>
+	 		<h5 class="semititle">Correlation</h5>
+	 		<div class="col-xs-50">	 
+	 		<h6 class="semivar">  x</h6>		
+	 		<md-radio-group  name="corr-x"  value="0">
+	 		  <md-radio-button class="radiobuttonform" (click)="setCorrXvar(col);" *ngFor="let col of cols"value="value_radio2">
+	 		    {{col}}
+	 		  </md-radio-button>
+	 		  <br/><br/>
+	 		</md-radio-group>
+			</div>
+			<div class="row">
+			<div class="col-xs-50">	
+			<h6 class="semivar">  y</h6> 
+	 		<md-radio-group  name="corr-y" value="0">
+	 		  <md-radio-button class="radiobuttonform" (click)="setCorrYvar(col);" *ngFor="let col of cols" value="value_radio3">
+	 		    {{col}}
+	 		  </md-radio-button>
+	 		  <br/><br/>
+	 		</md-radio-group>
+	 		</div>
+	 		</div>
+	 		<div style="text-align:center;" class="buttonholder">
+	 			<button style="bottom:0; right:0;" md-button (click)="drawCorr();">Draw</button>
+			</div>
+	 	</form>
+		 
+
+		<button style="bottom:0; right:0;" md-button (click)="saveImage();">Save chart!</button>
+	</div>
+	
+
+ 
+</div>
 	 

@@ -4,14 +4,15 @@ import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { Datafile } from './../datafile';
 import { DatafilesService } from './../datafiles.service';
- 
+import { DatachoiceService } from './../datachoice.service';
+
 var d3 = require('d3')
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [DatafilesService]
+  providers: [DatafilesService, DatachoiceService]
 })
 export class DashboardComponent implements OnInit, OnChanges {
 	title = 'Bulki';
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit, OnChanges {
   sub;
   @Output() data;
   file;
-  constructor(ngZone:NgZone, private dfs: DatafilesService, private route: ActivatedRoute) {
+  constructor(ngZone:NgZone, private dfs: DatafilesService, private dcs: DatachoiceService, private route: ActivatedRoute) {
   	 this.width = window.innerWidth;
      this.height = window.innerHeight;
 
@@ -59,11 +60,38 @@ export class DashboardComponent implements OnInit, OnChanges {
       this.dfs.getFile(id)
         .then(file =>{
          this.file = file
-            console.log(this.file)
-          if(this.file){       
-            d3.tsv(this.file.route, this.type, function(error, data) {
-              this.data = data;
-            }.bind(this));              
+          var regexp =/.*\.(.*)$/g;
+          var extension = null;
+          if (this.file && this.file.name){
+            extension = regexp.exec(this.file.name);
+            extension = extension && extension.length > 1 ? extension[1] : null
+            if (extension != null) {
+               switch(extension){
+                case 'tsv':
+                  d3.tsv(this.file.route, this.type, function(error, data) {
+                    this.data = data;
+                   }.bind(this));
+                  break; 
+                case 'csv':
+                  d3.csv(this.file.route, this.type, function(error, data) {
+                    this.data = data;
+                   }.bind(this)); 
+                  break; 
+                case 'json':
+                  d3.json(this.file.route, this.type, function(error, data) {
+                    this.data = data;
+                   }.bind(this)); 
+                  break; 
+                case 'xml':
+                  d3.xml(this.file.route, this.type, function(error, data) {
+                    this.data = data;
+                   }.bind(this)); 
+                  break; 
+                default:
+                  alert("File is corrupt or format not accepted")
+              }
+              
+            }       
           }
 
 
@@ -73,11 +101,9 @@ export class DashboardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    console.log(changes)
-    for (let propName in changes) {
+     for (let propName in changes) {
       let changedProp = changes[propName];
-      console.log(222,changedProp)
-      if (propName == 'data') {
+       if (propName == 'data') {
         this.data = changedProp.currentValue;
       }
      }

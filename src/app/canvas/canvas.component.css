@@ -4,3 +4,21 @@
 	border: 6px solid transparent;
 }
 
+
+.bar rect {
+  fill: pink;
+}
+ 
+
+
+axis--y {
+
+}
+
+axis--x {
+
+}
+
+axis text{
+	fill:black;
+}

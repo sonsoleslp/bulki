@@ -87,3 +87,16 @@ body {
 	display:block;
 	margin:auto;
 }
+
+
+
+.tablecontainer .pagination>li>a {
+	background-color: transparent !important;
+	color:  $bluegrey;
+	text-decoration: none;
+}
+.tablecontainer .pagination>li.active>a {
+	color:  $bluegrey;
+	text-decoration: underline;
+
+}

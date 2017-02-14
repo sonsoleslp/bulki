@@ -9,8 +9,11 @@ import { appRouterProviders } from './app.routes';
 import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
 import { InMemoryDataService }     from './in-memory-data.service';
 
-import { AppComponent } from './app.component';
 import { DatafilesService } from './datafiles.service';
+import { DatachoiceService } from './datachoice.service';
+
+
+import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { BulkitableComponent } from './bulkitable/bulkitable.component';
@@ -41,7 +44,7 @@ import { DataTableModule } from "angular2-datatable";
     DataTableModule,
     RouterModule.forRoot(appRouterProviders)
   ],
-  providers: [DatafilesService],
+  providers: [DatafilesService, DatachoiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

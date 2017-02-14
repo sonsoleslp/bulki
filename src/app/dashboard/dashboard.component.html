@@ -20,13 +20,13 @@
               <thead>
                 <tr>
                   <th *ngFor="let col of data.columns">
-                    <mfDefaultSorter by="col">{{col}}</mfDefaultSorter>
+                    <mfDefaultSorter  by="{{col}}" >{{col}}</mfDefaultSorter>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of mf.data">
-                  <td *ngFor="let i of data.columns">{{item[i]}}</td> 
+                  <td *ngFor="let i of data.columns" >{{item[i]}}</td> 
                 </tr>
               </tbody>
               <tfoot>

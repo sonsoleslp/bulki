@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.dfs.getFiles()
       .then(data => this.data = data);
+    
   }
 
 }
